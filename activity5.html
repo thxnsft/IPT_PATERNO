@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Adder with Dark/Light Mode</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <style>
+        /* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f1f1f1;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+/* Light Mode Styles */
+.light-mode {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.light-mode button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.light-mode input {
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: #333;
+    color: #f1f1f1;
+}
+
+.dark-mode button {
+    background-color: #555;
+    color: white;
+}
+
+.dark-mode input {
+    background-color: #444;
+    color: white;
+    border: 1px solid #777;
+}
+
+.mode-toggle button {
+    margin: 10px;
+    font-size: 14px;
+}
+
+    </style>
+    <div class="container">
+        <h1>Number Adder</h1>
+        <div class="mode-toggle">
+            <button id="mode-toggle">Switch to Dark Mode</button>
+        </div>
+        <div class="input-container">
+            <input type="number" id="num1" placeholder="Enter first number" />
+            <input type="number" id="num2" placeholder="Enter second number" />
+        </div>
+        <button id="addButton">Add Numbers</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const modeToggle = document.getElementById("mode-toggle");
+            const body = document.body;
+            const addButton = document.getElementById("addButton");
+            const num1Input = document.getElementById("num1");
+            const num2Input = document.getElementById("num2");
+            const resultDiv = document.getElementById("result");
+        
+            // Initial mode: Light
+            let isDarkMode = false;
+        
+            // Mode toggle function
+            modeToggle.addEventListener("click", function () {
+                isDarkMode = !isDarkMode;
+                if (isDarkMode) {
+                    body.classList.remove("light-mode");
+                    body.classList.add("dark-mode");
+                    modeToggle.textContent = "Switch to Light Mode";
+                } else {
+                    body.classList.remove("dark-mode");
+                    body.classList.add("light-mode");
+                    modeToggle.textContent = "Switch to Dark Mode";
+                }
+            });
+        
+            // Function to add numbers
+            addButton.addEventListener("click", function () {
+                const num1 = parseFloat(num1Input.value);
+                const num2 = parseFloat(num2Input.value);
+        
+                if (!isNaN(num1) && !isNaN(num2)) {
+                    const sum = num1 + num2;
+                    resultDiv.textContent = `Result: ${sum}`;
+                } else {
+                    resultDiv.textContent = "Please enter valid numbers.";
+                }
+            });
+        });        
+
+    </script>
+    
+    
+</body>
+</html>
